@@ -1,0 +1,13 @@
+<!--로그인-->
+<body class = "login_body">
+    <div class="login-page">
+        <div class="form_login">
+            <%= form_tag (sessions_path), html: {class: "login-form"} do %>
+                <%= text_field_tag "email", nil, placeholder: 'Email'%> <br><br>
+                <%= password_field_tag "password",nil, placeholder: 'Password'%> <br><br>
+                <button type="submit" class="actions">LogIn</button>
+            <% end %>
+            <p class="message">Not registered? <a href="/users/new">Create an account</a></p>
+        </div>
+    </div>
+</body>

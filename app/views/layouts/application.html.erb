@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Workspace</title>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+  <!--bootstrap js CDN-->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    
+    <!--bootstrap css CDN-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    
+    <!--fontawesome CDN-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
+    <!--navbar-->
+</head>
+    
+    
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav" style= "background-color:white;">
+      <div class="container">
+        <a class="navbar-brand" href="/home/index"><img src="https://www.shareicon.net/download/2017/03/06/880409_food.ico" style="width: 40px; height: 40px; text-shadow: 3px 3px #E1E6E5;"></a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          Menu
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <% if session[:user_id] %>
+              <li class="nav-item">
+                <a class="nav-links"><%= User.find_by(id: session[:user_id]).name %>님 환영합니다٩(`･ω･´)و</a>
+              </li>
+            <% end %>  
+            <li class="nav-item">
+              <a class="nav-links" href="/home/index">index</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-links" href="/home/show">board</a>
+            </li>
+            <li class="nav-item">
+              <% if session[:user_id] %>
+                <%=link_to 'Logout', session_path(session[:user_id]),method: 'delete', class: "nav-links" %> 
+              <% else %>
+                <%=link_to 'Login' ,new_session_path, class: "nav-links" %>
+              <% end %>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+
+<%= yield %>
+
+</body>
+</html>

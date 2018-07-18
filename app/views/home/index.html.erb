@@ -1,0 +1,64 @@
+<link href="https://fonts.googleapis.com/css?family=Song+Myung" rel="stylesheet">
+<style>
+ @import url('https://fonts.googleapis.com/css?family=Song+Myung');
+ .sm {font-family: 'Song Myung', serif; font-size: 100px; margin-top:100px;}
+ h2{font-family: 'Song Myung', serif; font-size:20px; font-weight:bold;}
+ p{text-align:center;
+  margin-bottom:3px;
+ }
+ tbody{text-align:center;}
+</style>
+<div class="row justify-content-center">
+ <h1 class="sm"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSE0ctmfRKMBx_kNT60XfDU9ABGf63rp1dVupLt2lVgPFwBRrAc" style="width: 80px; height: 80px; margin-right:10px; margin-bottom:20px; text-shadow: 4px 4px #E1E6E5;"><span style="color:#FB7069; text-shadow: 4px 4px #E1E6E5;">방</span><span style="color:#F0BC40; text-shadow: 4px 4px #E1E6E5;">학</span><span style="color:#67E142; text-shadow: 4px 4px #E1E6E5;">을</span>
+ <span style="color:#4FACF2; text-shadow: 4px 4px #E1E6E5;">책</span><span style="color:#F097FB; text-shadow: 4px 4px #E1E6E5;">임</span><span style="color:#FB7069; text-shadow: 4px 4px #E1E6E5;">져</span>
+ <img src="https://www.freeiconspng.com/uploads/swimming-pool-icon-png-3.png" style="width: 100px; height: 100px; margin-bottom:20px;">
+ </h1>
+</div>
+<h3><div class="row justify-content-center"><a href='/home/show' style="font-family: 'Song Myung'; text-decoration: underline;">게시판</a></div></h3>
+<br><br>
+<!--영화 웹툰 전시회 배너-->
+<div class = "row justify-content-center">
+    <div class = "col-4" align="center"><img src="http://www.bunicomic.com/wp-content/uploads/2015/08/WebtoonLogo160.jpg" style="width: 50px; height: 50px; margin-right:10px; margin-bottom:20px;"><h2>Today's Webtoons</h2></br>
+        <table boarder = 0>
+            <tbody>
+                <% i = 0%> 
+                <% @webtoonQueries2.each do |query| %>
+                    <% if i < 3 %>
+                        <% i += 1 %>
+                        <%next%>
+                    <%end%>
+                    <!--상단 3개의 추천 웹툰 스킵-->
+                    <tr>
+                        <td><p><img src="<%= @webtoonQueries1[i]['image'] %>"></p>
+                        <a href=<%=query['link']%>><%= query['title'] %></a><hr></td>
+                    </tr>
+                    <% i += 1 %>
+                <% end %>
+            </tbody>
+    </table></div>
+    <div class = "col-4" align="center"><img src="https://image.flaticon.com/icons/svg/33/33692.svg" style="width: 40px; height: 40px; margin-right:10px; margin-bottom:20px;"><h2>Movie ranking</h2></br>
+    <table boarder = 0>
+        <tbody>
+            <% @movieQueries.each do |query| %>
+                <tr>
+                    <td> <%= query['rank'] %> </td>
+                    <td><a href=<%=query['link']%>><%= query['title'] %></a></td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table></div>
+    <div class = "col-4" align="center"><img src="https://cdn2.iconfinder.com/data/icons/travel-tourism-2/24/Exhibition-512.png" style="width: 50px; height: 50px; margin-right:10px; margin-bottom:20px;"><h2>A popular Exhibition</h2>
+    <table boarder = 0></br>
+        <tbody>
+            <% i = 0 %>
+            <% @exhibitQueries2.each do |query| %>
+                <tr>
+                    <td><p><img src="<%= @exhibitQueries1[i]['image'] %>" ></p>
+                    <a href=<%=query['link']%>><%= query['title'] %></a><hr></td>
+                </tr>
+                <% i += 1 %>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+</div>

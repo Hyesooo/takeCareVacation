@@ -1,0 +1,39 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Song+Myung" rel="stylesheet">
+<style>
+ @import url('https://fonts.googleapis.com/css?family=Song+Myung');
+ .sm {font-family: 'Song Myung', serif; font-size: 50px; margin-top:50px; color:#359026;}
+ p{font-family: 'Song Myung', serif;}
+</style>
+
+
+        
+<br><Br>
+<br>
+<div class="row justify-content-center">
+  <div class="col-6">
+    <div style= "text-align : center" >
+      <h1 class="sm">새로운 글 작성</h1>
+    </div><br><br>
+    <form action='/home/create' method='post'>
+      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+      <div style="font-family : 'Song Myung'">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">Options</label>
+          </div>
+          <select name= "post_kinds" class="custom-select" id="inputGroupSelect01">
+            <option selected>Choose...</option>
+            <option value="1">Movie</option>
+            <option value="2">Webtoon</option>
+            <option value="3">Exhibition</option>
+          </select>
+        </div>
+      </div>
+      <p style="font-family : 'Song Myung'; font-size : 25px ">제목  <input type='text' name='post_title' class="form-control" aria-label="Text input with segmented dropdown button" ></p>
+      <p style="font-family : 'Song Myung';  font-size : 25px">내용  <textarea name='post_content'class="form-control" aria-label="Text input with segmented dropdown button"></textarea></p>
+      <div align="center">
+        <button type="submit" class="btn btn-outline-success" style="font-family : 'Song Myung'; font-size : 20px; width: 10rem;">제출</button>
+      </div>
+    </div>
+  </div>  

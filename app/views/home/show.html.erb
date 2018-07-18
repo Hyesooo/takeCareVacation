@@ -1,0 +1,67 @@
+<link href="https://fonts.googleapis.com/css?family=Song+Myung" rel="stylesheet">
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Song+Myung');
+    .hoo
+    {font-family: 'Song Myung', serif; color:white; font-size:50px; text-align:center;}
+    .a_board{
+        font-family: 'Song Myung', serif;
+        font-size:15px;
+    }
+    .board{
+        border-style: dotted;
+        border-color: #359026;
+        border-width: 2px;
+        border-radius:20px;
+        padding:20px;
+    }
+    .review{
+         font-family: 'Song Myung', serif;
+    }
+    .goback{
+        font-family: 'Song Myung', serif;
+        margin:30%;
+    }
+</style>
+
+<br><Br><Br>
+    <div class=hoo>
+        <a class="review" href='/home/new'>나도 후기 쓸래요!</a><br><br>
+        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    </div>
+    <div class = "row justify-content-center">
+        <%@post.each do |x|%>
+        <div style="font-family : 'Song Myung'; font-size : 17px">
+            <div class="board">
+                <% if x.kinds == 1%>
+                    <p><span style="color:#359026; font-weight:bold; font-family: 'Song Myung', serif; font-size:20px;">분류 </span>: Movie <br></p>
+                    <% elsif x.kinds == 2%>
+                    <p><span style="color:#359026; font-weight:bold; font-family: 'Song Myung', serif; font-size:20px;">분류 </span>: Webtoon <br></p>
+                <% elsif x.kinds == 3 %>
+                    <p><span style="color:#359026; font-weight:bold; font-family: 'Song Myung', serif; font-size:20px;">분류 </span>: Exhibition<br></p>
+                <% else %>
+                    <p><span style="color:#359026; font-weight:bold; font-family: 'Song Myung', serif; font-size:20px;">분류 </span>: <br></p>
+                <% end %>
+                <p><span style="color:#359026; font-weight:bold; font-family: 'Song Myung', serif; font-size:20px;">제목</span> : <%=x.title%><br></p>
+                <p><span style="color:#359026; font-weight:bold; font-family: 'Song Myung', serif; font-size:20px;"> 내용</span> : <%=x.content%><br></p>
+                <div class="row justify-content-end" style="margin-right :0.5rem">
+                <a class="a_board" href='/home/edit/<%=x.id%>' style ="margin-right : 0.3rem"><i class="fas fa-eraser"></i> 수정</a>
+                <a class="a_board" href='/home/destroy/<%=x.id%>'><i class="fas fa-trash-alt"></i> 삭제</a><br>
+            </div>
+            </div>
+    <!--댓글-->
+            <form action='/posts/<%=x.id%>/comments/create' method ="POST">
+                <%= hidden_field_tag :authenticity_token, form_authenticity_token %><br>
+                <textarea class="form-control" name ="content"></textarea>
+                <div class="row justify-content-end" style="margin-top : 0.5rem">
+                    <button type="submit" class="btn btn-outline-success" >댓글쓰기</button>
+                </div>
+            </form>
+            <%x.comments.each do |comment|%>
+                <%=comment.content%> &nbsp;
+                <a class="a_board" href="/posts/<%=x.id%>/comments/<%=comment.id%>">삭제</a><br>
+            <%end%><br>
+        <%end%>
+        <br>
+        <a class="goback" href ='/home/index'><span style="color:#359026; font-weight:bold; font-size:30px;">되돌아갈래요</span></a>
+        </div>
+    </div>
